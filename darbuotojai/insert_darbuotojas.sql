@@ -1,4 +1,4 @@
 -- SQLite
 INSERT INTO darbuotojai (vardas, pavarde, atlyginimas)
-VALUES ("Egle", "Smaguolyte", 3000), ("Labas", "Rytas", 2000);
-SELECT * FROM darbuotojai;
+VALUES ("Sausis", "Rytauskas", 2023), ("Antradienis", "Sausiauskas", 1515);
+SELECT * FROM darbuotojai ORDER BY atlyginimas;
