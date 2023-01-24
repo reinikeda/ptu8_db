@@ -3,7 +3,7 @@ from many2many import Tevas, Vaikas, engine
 
 session = sessionmaker(bind=engine)()
 
-print('--- tevaai su vaikais ---')
+print('--- tevai su vaikais ---')
 tevas = session.query(Tevas).filter_by(vardas="Kestutis").one()
 print(tevas.vardas, tevas.pavarde)
 for vaikas in tevas.vaikai:
@@ -14,7 +14,7 @@ print(mama.vardas, mama.pavarde)
 for vaikas in mama.vaikai:
     print('-', vaikas.vardas, vaikas.pavarde)
 
-print('--- vaikas su tevais ---')
+print('--- vaikai su tevais ---')
 vaikai = session.query(Vaikas).all()
 for vaikas in vaikai:
     print(vaikas.vardas, vaikas.pavarde)
