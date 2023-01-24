@@ -16,9 +16,9 @@ session = sessionmaker(bind=engine)()
 # session.add(mama)
 # session.commit()
 
-tevai = session.query(Tevas).filter(Tevas.pavarde.ilike("Jan%")).all()
-tevai[0].pavarde = 'Januskevicius'
-tevai[1].pavarde = 'Januskeviciene'
-marco = Vaikas(vardas="Marco", pavarde="Januskevicius", tevai=tevai)
+tetis_ir_mama = session.query(Tevas).filter(Tevas.pavarde.ilike("Jan%")).all()
+tetis_ir_mama[0].pavarde = 'Januskevicius'
+tetis_ir_mama[1].pavarde = 'Januskeviciene'
+marco = Vaikas(vardas="Marco", pavarde="Januskevicius", tevai=tetis_ir_mama)
 session.add(marco)
 session.commit()
