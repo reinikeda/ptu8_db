@@ -1,9 +1,16 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
+from sqlalchemy import Column, Integer, String, Table, ForeignKey, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-engine = create_engine('sqlite:///data/tevai_vaikai_o2m.db')
+engine = create_engine('sqlite:///data/tevai_vaikai_m2m.db')
 Base = declarative_base()
+
+
+tevai_vaikai = Table('tevas_vaikas', Base.metadata,
+    Column('id', Integer, primary_key=True),
+    Column('tevas_id', Integer, ForeignKey('tevas.id')),
+    Column('vaikas_id', Integer, ForeignKey('vaikas.id'))
+)
 
 
 class Tevas(Base):
@@ -11,7 +18,7 @@ class Tevas(Base):
     id = Column(Integer, primary_key=True)
     vardas = Column(String)
     pavarde = Column(String)
-    vaikai = relationship("Vaikas", back_populates="tevas")
+    vaikai = relationship("Vaikas", secondary=tevai_vaikai, back_populates="tevai")
 
 
 class Vaikas(Base):
@@ -20,8 +27,7 @@ class Vaikas(Base):
     vardas = Column(String)
     pavarde = Column(String)
     mokymo_istaiga = Column(String)
-    tevas_id = Column(Integer, ForeignKey("tevas.id"))
-    tevas = relationship("Tevas", back_populates="vaikai")
+    tevai = relationship("Tevas", secondary=tevai_vaikai, back_populates="vaikai")
 
 
 if __name__ == "__main__":
