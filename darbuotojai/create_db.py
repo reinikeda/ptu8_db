@@ -28,4 +28,3 @@ with conn:
         ('Kevinas', 'Karpus', 9876.54)
     ]
     c.executemany('INSERT INTO darbuotojai (vardas, pavarde, atlyginimas) VALUES (?, ?, ?)', darbuotojai)
-    
